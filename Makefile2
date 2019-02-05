@@ -1,0 +1,18 @@
+CC=gcc
+
+all: hw12-main.o libmy.a
+	$(CC) $^ -o hw12two
+hw12-main.o: hw12-main.c
+	$(CC) -c $^ -o $@
+libmy.a: hw12-A.o hw12-B.o hw12-C.o hw12-D.o
+	ar rcs $@ $^
+hw12-A.o: hw12-A.c
+	$(CC) -c $^ -o $@
+hw12-B.o: hw12-B.c
+	$(CC) -c $^ -o $@
+hw12-C.o: hw12-C.c
+	$(CC) -c $^ -o $@
+hw12-D.o: hw12-D.c
+	$(CC) -c $^ -o $@
+clean:
+	rm *.o libmy.a hw12two

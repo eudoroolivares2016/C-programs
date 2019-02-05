@@ -1,0 +1,18 @@
+CC= gcc
+LDFLAGS = "-Wl,-R,./"
+all: hw12-main.o libmy.so
+	$(CC) $(LDFLAGS) $^ -o hw12three
+hw12-main.o: hw12-main.c
+	$(CC) $(LDFLAGS) -c $^ -o $@
+libmy.so: hw12-A.o hw12-B.o hw12-C.o hw12-D.o
+	$(CC) $(LDFLAGS) -shared -o $@ $^
+hw12-A.o: hw12-A.c
+	$(CC) $(LDFLAGS) -c -fpic $^ -o $@
+hw12-B.o: hw12-B.c
+	$(CC) $(LDFLAGS) -c -fpic $^ -o $@
+hw12-C.o: hw12-C.c
+	$(CC) $(LDFLAGS) -c -fpic $^ -o $@
+hw12-D.o: hw12-D.c
+	$(CC) $(LDFLAGS) -c -fpic $^ -o $@
+clean:
+	rm *.o libmy.so hw12three
